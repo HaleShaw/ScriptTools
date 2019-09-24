@@ -13,7 +13,9 @@
 * [AutoIt](AutoIt)
 * [Batch](Batch)
 * [C#](C#)
+* [PowerShell](PowerShell)
 * [Python](Python)
+* [Reg](Reg)
 * [Shell](Shell)
 * [VBS](VBS)
 
