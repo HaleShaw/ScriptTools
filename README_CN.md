@@ -2,7 +2,7 @@
 
 <center>个人使用的一些脚本和工具</center>
 
-[![python-image]](python-url)
+[![python-image]][python-url]
 [![lic-image]](LICENSE)
 
 * [英文说明](README.md)

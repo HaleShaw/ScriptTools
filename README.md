@@ -2,7 +2,7 @@
 
 <center>Some personal scripts and tools.</center>
 
-[![python-image]](python-url)
+[![python-image]][python-url]
 [![lic-image]](LICENSE)
 
 * [Chinese Documentation](README_CN.md)
