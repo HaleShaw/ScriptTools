@@ -15,3 +15,5 @@
 * [Python](Python)
 * [Shell](Shell)
 * [VBS](VBS)
+
+[lic-image]: https://img.shields.io/dub/l/vibe-d.svg
