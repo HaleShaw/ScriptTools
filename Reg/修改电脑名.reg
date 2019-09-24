@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\ComputerName\ComputerName]
+"ComputerName"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\ComputerName\ActiveComputerName]
+"ComputerName"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Tcpip\Parameters]
+"NV Hostname"="计算机名"
+"Hostname"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Control\ComputerName\ComputerName]
+"ComputerName"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Tcpip\Parameters]
+"NV Hostname"="计算机名"
+"Hostname"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName]
+"ComputerName"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName]
+"ComputerName"="计算机名"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+"NV Hostname"="计算机名"
+"Hostname"="计算机名"

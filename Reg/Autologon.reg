@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon]
+"AutoAdminLogon"="1"
+"DefaultUserName"="此輸入所需用戶名"
+"DefaultPassword"="此輸入所用密碼"
+"DefaultDomainName"="此輸入所用網域名"

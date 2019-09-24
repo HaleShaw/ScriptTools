@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; 删除“通过QQ发送到”
+[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\QQShellExt]
+[-HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\QQShellExt]
+[-HKEY_CLASSES_ROOT\lnkfile\shellex\ContextMenuHandlers\QQShellExt]
+[-HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\QQShellExt64]
+[-HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\QQShellExt64]
+[-HKEY_CLASSES_ROOT\lnkfile\shellex\ContextMenuHandlers\QQShellExt64]
