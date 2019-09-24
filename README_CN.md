@@ -1,12 +1,12 @@
-# ScriptTools
+# <center>ScriptTools</center>
 
-Some personal scripts and tools.
+<center>个人使用的一些脚本和工具</center>
 
 [![lic-image]](LICENSE)
 
-* [Chinese Documentation](README_CN.md)
+* [英文说明](README.md)
 
-## Language types
+## 语言种类
 
 * [AutoHotKey](AutoHotKey)
 * [AutoIt](AutoIt)
