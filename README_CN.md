@@ -2,6 +2,7 @@
 
 <center>个人使用的一些脚本和工具</center>
 
+[![python-image]](python-url)
 [![lic-image]](LICENSE)
 
 * [英文说明](README.md)
@@ -16,4 +17,7 @@
 * [Shell](Shell)
 * [VBS](VBS)
 
-[lic-image]: https://img.shields.io/dub/l/vibe-d.svg
+[python-image]: https://img.shields.io/badge/python-%3E%3D2.7-green
+[python-url]: https://www.python.org
+
+[lic-image]: https://img.shields.io/github/license/HaleShaw/ScriptTools
