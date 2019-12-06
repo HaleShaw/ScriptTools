@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+  <title>原生JS弹出模态框</title>
+  <script type="text/javascript">
+
+    window.onload = function () {
+      var msgButton = document.createElement("a");
+      msgButton.textContent = "弹出模态框";
+      msgButton.setAttribute("href", "javascript:void(0);");
+      msgButton.setAttribute("onclick", "showModal()");
+      msgButton.style.textDecoration = "none";
+
+
+      var modal = document.createElement("div");
+      modal.setAttribute("id", "modal");
+      modal.style.width = "80%";
+      modal.style.height = "80%";
+      modal.style.margin = "5% 0 0 10%";
+      modal.style.position = "fixed";
+      modal.style.backgroundColor = "#ffd";
+      modal.style.zIndex = "1000";
+      modal.style.display = "none";
+
+      var back = document.createElement("div");
+      back.setAttribute("id", "back");
+      back.style.width = "100%";
+      back.style.height = "100%";
+      back.style.position = "fixed";
+      back.style.top = "0";
+      back.style.left = "0";
+      back.style.background = "rgba(0, 0, 0, .5)";
+      back.style.zIndex = "999";
+      back.style.display = "none";
+
+
+      var titleP = document.createElement("p");
+      titleP.style.textAlign = "right";
+      titleP.style.margin = "0 0 0 0";
+      titleP.style.backgroundColor = "#A0B9FF";
+      titleP.style.height = "20px";
+
+      var titleSpan = document.createElement("span");
+      titleSpan.textContent = "标题";
+      titleSpan.style.fontWeight = "bold";
+      titleSpan.style.position = "fixed";
+      titleSpan.style.left = "10%";
+      titleSpan.style.marginLeft = "1em";
+      titleSpan.style.fontWeight = "bold";
+
+      var closeSpan = document.createElement("span");
+      closeSpan.setAttribute("id", "closeSpan");
+      closeSpan.style.color = "#fff";
+      closeSpan.style.padding = "0 5px 0 5px";
+      closeSpan.style.width = "20px";
+      closeSpan.style.height = "20px";
+
+      titleP.append(titleSpan);
+      titleP.append(closeSpan);
+
+      var textP = document.createElement("pre");
+      textP.setAttribute("id", "textP");
+      textP.textContent = "文本内容";
+
+      modal.append(titleP);
+      modal.append(textP);
+      document.body.append(msgButton);
+      document.body.append(back);
+      document.body.append(modal);
+      var closeSpanCss = "<style type='text/css'>#closeSpan:hover{background: #e81123 !important;}\n#closeSpan{position: relative; width: 20px; height: 20px; display: inline-block;}\n#closeSpan::before{content: ''; width: inherit; border-top: 1px solid #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(45deg);}\n#closeSpan::after{content: ''; width: inherit; border-top: 1px solid #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(-45deg);}\n</style>";
+      document.head.innerHTML = document.head.innerHTML.concat(closeSpanCss);
+
+      closeSpan.onclick = function () {
+        modal.style.display = "none";
+        back.style.display = "none";
+      };
+    }
+    function showModal() {
+      var modalDiv = document.getElementById("modal");
+      var backDiv = document.getElementById("back");
+      modalDiv.style.display = "block";
+      backDiv.style.display = "block";
+    };
+  </script>
+</head>
+
+<body></body>
+
+</HTML>

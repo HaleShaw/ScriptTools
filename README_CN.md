@@ -13,6 +13,7 @@
 * [AutoIt](AutoIt)
 * [Batch](Batch)
 * [C#](C#)
+* [JavaScript](JavaScript)
 * [PowerShell](PowerShell)
 * [Python](Python)
 * [Reg](Reg)
