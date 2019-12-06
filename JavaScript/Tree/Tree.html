@@ -1,0 +1,404 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jQuery可折叠多级树</title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css" rel="stylesheet">
+	<style>
+		.jTree li {
+			list-style-type: none;
+			margin: 0;
+			padding: 10px 5px 0 5px;
+			position: relative
+		}
+
+		.jTree li::before,
+		.jTree li::after {
+			content: '';
+			left: -20px;
+			position: absolute;
+			right: auto
+		}
+
+		.jTree li::before {
+			border-left: 1px solid #999;
+			bottom: 50px;
+			height: 100%;
+			top: 0;
+			width: 1px
+		}
+
+		.jTree li::after {
+			border-top: 1px solid #999;
+			height: 20px;
+			top: 30px;
+			width: 25px
+		}
+
+		.jTree li span {
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border: 1px solid #999;
+			border-radius: 5px;
+			display: inline-block;
+			padding: 3px 8px;
+			text-decoration: none
+		}
+
+		.jTree li.parentLi>span {
+			cursor: pointer
+		}
+
+		.jTree>ul>li::before,
+		.jTree>ul>li::after {
+			border: 0
+		}
+
+		.jTree li:last-child::before {
+			height: 30px
+		}
+
+		.jTree li.parentLi>span:hover,
+		.jTree li.parentLi>span:hover+ul li span {
+			background: #eee;
+			border: 1px solid #94a0b4;
+			color: #000
+		}
+
+		li {
+			line-height: 20px;
+			text-align: -webkit-match-parent;
+		}
+
+		li>span i {
+			margin-right: 2px;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+		}
+
+		a {
+			color: #08c;
+			text-decoration: none;
+		}
+
+		body {
+			margin: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 14px;
+		}
+
+		img {
+			height: auto;
+			max-width: 100%;
+			vertical-align: middle;
+			border: 0;
+			margin-right: 2px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(function () {
+			var data = {
+				"name": "常用软件",
+				"iType": "icon",
+				"icon": "fas fa-tools fa-fw",
+				"img": "",
+				"opened": true,
+				"href": "",
+				"children": [
+					{
+						"name": "办公软件",
+						"iType": "icon",
+						"icon": "fas fa-file",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "Office",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cmder.net/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Cmder",
+								"children": []
+							},
+							{
+								"name": "Explorer系列",
+								"iType": "icon",
+								"icon": "fas fa-file",
+								"img": "",
+								"opened": true,
+								"href": "",
+								"children": [
+									{
+										"name": "Office",
+										"iType": "img",
+										"icon": "",
+										"img": "https://cmder.net/favicon.ico",
+										"opened": false,
+										"href": "/tools/efficient/Cmder",
+										"children": []
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "下载软件",
+						"iType": "icon",
+						"icon": "fas fa-cloud-download-alt icon",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "XDown",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/XDown_32.png",
+								"opened": false,
+								"href": "/tools/download/XDown",
+								"children": []
+							},
+							{
+								"name": "PanDownload",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/PanDownload_32.png",
+								"opened": false,
+								"href": "/tools/download/PanDownload",
+								"children": []
+							},
+							{
+								"name": "Windows-ISO-Downloader",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/WindowsISODownloader_32.png",
+								"opened": false,
+								"href": "/tools/download/WindowsISODownloader",
+								"children": []
+							}
+						]
+					},
+					{
+						"name": "效率工具",
+						"iType": "icon",
+						"icon": "fas fa-clock",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "Cmder|ConEmu",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cmder.net/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Cmder",
+								"children": []
+							},
+							{
+								"name": "Everything",
+								"iType": "img",
+								"icon": "",
+								"img": "https://www.voidtools.com/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Everything",
+								"children": []
+							},
+							{
+								"name": "Wox",
+								"iType": "img",
+								"icon": "",
+								"img": "http://www.wox.one/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Wox",
+								"children": []
+							}
+						]
+					},
+					{
+						"name": "开发工具",
+						"iType": "icon",
+						"icon": "fas fa-code",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "NotePad++",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/NotePad++_32.png",
+								"opened": false,
+								"href": "/tools/develop/NotePad++",
+								"children": []
+							}
+						]
+					},
+					{
+						"name": "影音软件",
+						"iType": "icon",
+						"icon": "fas fa-photo-video",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "Adobe",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/PhotoShop_32.png",
+								"opened": false,
+								"href": "/tools/av/Adobe",
+								"children": []
+							},
+							{
+								"name": "Paint.net",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/Paint.net_32.png",
+								"opened": false,
+								"href": "/tools/av/Paint-net",
+								"children": []
+							},
+							{
+								"name": "ScreenToGif",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cdn.jsdelivr.net/gh/HaleShaw/cdn/img/ScreenToGif_32.png",
+								"opened": false,
+								"href": "/tools/av/ScreenToGif",
+								"children": []
+							}
+						]
+					},
+					{
+						"name": "系统",
+						"iType": "icon",
+						"icon": "fas fa-desktop",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "Windows 10",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cmder.net/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Cmder",
+								"children": []
+							}
+						]
+					},
+					{
+						"name": "其他",
+						"iType": "icon",
+						"icon": "fas fa-search",
+						"img": "",
+						"opened": true,
+						"href": "",
+						"children": [
+							{
+								"name": "Wechat",
+								"iType": "img",
+								"icon": "",
+								"img": "https://cmder.net/favicon.ico",
+								"opened": false,
+								"href": "/tools/efficient/Cmder",
+								"children": []
+							}
+						]
+					}
+				]
+			};
+
+			$('.jTree').append($("<ul><li></li></ul>"));
+			recursiveTree($('.jTree > ul > li'), data, "", "");
+
+			/**
+			 * 递归创建li子节点
+			 * element, li节点
+			 * item, data对象中单个item
+			 * index, 当前元素序号，起始值为1
+			 * parentIndex，父级元素序号，包含“.”，为字符串
+			 */
+			function recursiveTree(element, item, index, parentIndex) {
+				var itemSpan = $("<span></span>");
+				var currentIndex = concatIndex(index, parentIndex);
+				if (item.children.length > 0) {
+					itemSpan.append(createI(item));
+					itemSpan.append(currentIndex + " " + item.name);
+
+					var itemUl = $("<ul></ul>");
+					for (var j = 0; j < item.children.length; j++) {
+						var childLi = $("<li></li>");
+						recursiveTree(childLi, item.children[j], j + 1, currentIndex);
+						itemUl.append(childLi);
+					}
+					element.append(itemSpan);
+					element.append(itemUl);
+				}
+				else {
+					var itemA = $("<a></a>");
+					itemA.append(createI(item));
+					itemA.attr("href", item.href);
+					itemA.attr("target", "_blank");
+					itemA.append(currentIndex + " " + item.name);
+					itemSpan.append(itemA);
+					element.append(itemSpan);
+				}
+			}
+
+			// 拼接名称
+			function concatIndex(index, parentIndex) {
+				if (parentIndex == "" || parentIndex == undefined) {
+					return index;
+				} else {
+					return parentIndex + "." + index;
+				}
+			}
+
+			// 创建图像
+			function createI(item) {
+				var iElement;
+				if ("icon" == item.iType) {
+					iElement = $("<i></i>");
+					iElement.addClass(item.icon);
+				}
+				else if ("img" == item.iType) {
+					iElement = $("<img></img>");
+					iElement.attr("width", "20");
+					iElement.attr("height", "20");
+					iElement.attr("alt", item.name);
+					iElement.attr("src", item.img);
+				}
+				return iElement;
+			}
+
+			$('.jTree li:has(ul)').addClass('parentLi');
+			$('.jTree li.parentLi > span').on('click', function (e) {
+				var children = $(this).parent('li.parentLi').find(' > ul > li');
+				if (children.is(":visible")) {
+					children.hide('fast');
+				} else {
+					children.show('fast');
+				}
+				e.stopPropagation();
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div class="jTree"></div>
+</body>
+
+</html>
